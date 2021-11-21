@@ -33,18 +33,23 @@ public class Banking {
 			System.out.println("Insufficient balance");
 			return;
 		}
-		System.out.println("The Otp Generated is "+ obj.GenerateOtp());
+		int generateNewOTP = obj.GenerateOtp();
+		System.out.println("The Otp Generated is "+ generateNewOTP);
 		System.out.println("Enter the Otp");
 		
 		int otpEnteredByUser = input.nextInt();
-		if(otpEnteredByUser != obj.GenerateOtp())
+		if(otpEnteredByUser == generateNewOTP)
 		{
+			balance = balance - amount;
+			System.out.println("Successfully transfered amount "+amount+" current balance is "+balance);
+		}
+		else
+		{
+			
 			System.out.println("Incorrect OTP");
-			return;
 		}
 		
-		balance = balance - amount;
-		System.out.println("Successfully transfered amount "+amount+" current balance is "+balance);
+		
 		
 	}
 }
