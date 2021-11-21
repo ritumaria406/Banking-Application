@@ -1,5 +1,6 @@
 package com.greatlearning.main;
 import com.greatlearning.model.*;
+import com.greatlearning.service.*;
 import java.util.Scanner;
 
 public class Driver {
@@ -8,8 +9,11 @@ public class Driver {
 	private static Scanner input = new Scanner(System.in);
 	
 	private static Customer customer = new Customer("HDFT123453","password123");
+	private static Banking bank = new Banking();
 	
 	public static void main(String[] args) {
+		int amount;
+		int choice;
 		// TODO Auto-generated method stub
 		displayWelcomeMessage();
 		
@@ -18,6 +22,33 @@ public class Driver {
 		{
 			System.out.println("Successfully Authenticated");
 			displayMenu();
+			
+			do
+			{
+			System.out.println("Enter your choice");
+			
+			 choice = input.nextInt();
+			
+			switch(choice)
+			{
+			case 1: System.out.println("Enter the amount to deposit");
+			amount = input.nextInt();
+			
+			bank.deposit(amount);
+			break;
+			case 2: System.out.println("Enter the amount to withdraw");
+			amount = input.nextInt();
+			
+			bank.withdraw(amount);
+			break;
+			case 3: System.out.println("Enter the amount to transfer");
+			amount = input.nextInt();
+			System.out.println("Enter the AC of the recipient");
+			String receiptAcNumber = input.next();
+			bank.transfer(amount,receiptAcNumber);
+			break;
+			}
+			}while(choice!=4);
 		}
 		else
 		{
